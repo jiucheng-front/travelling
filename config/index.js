@@ -1,6 +1,7 @@
 const config = {
   projectName: 'travelling',
   date: '2019-10-30',
+  // 默认设计稿尺寸：750px,写css直接按照设计稿写即可。若是640需该变
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
