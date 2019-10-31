@@ -27,12 +27,11 @@ class App extends Component {
       'pages/me/me',
     ],
     window: {
-      // 导航栏北极色
-      navigationBarBackgroundColor: '#e4393c',
+      // 导航栏背景色
+      navigationBarBackgroundColor: '#ffffff',
       // 窗口的背景色
-      backgroundColor: '#999',
+      backgroundColor: '#f6f8fa',
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
       // 导航栏标题文字内容
       navigationBarTitleText: 'WeChat',
       // 导航栏标题颜色，仅支持 black / white

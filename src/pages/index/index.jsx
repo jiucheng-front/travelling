@@ -49,8 +49,10 @@ class Index extends Component {
               </View>
               <View className='itemRight'>
                 <Text className='title'>{book.title}</Text>
-                <Text className='price'>价格：{book.price}</Text>
-                <Button className='btn'>加入购物车</Button>
+                <View className='actionWrap'>
+                  <Text className='price'>价格：{book.price}</Text>
+                  <Button className='btn'>加入购物车</Button>
+                </View>
               </View>
             </View>
           ))

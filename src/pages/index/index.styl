@@ -1,51 +1,63 @@
 
 .index{
   padding: 15px 0  25px 0;
+  background-color: #f6f8fa;
 }
 
 .lineItem{
-  display: block;
-  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 94%;
+  margin: 10px auto;
+  padding: 15px 15px 15px 0;
+  box-sizing: border-box;
+  box-shadow: 0 0 6px rgba(180,160,120,.8);
+  // box-shadow: 6px 0 5px -5px rgba(180,160,120,.6), -6px 0 5px -5px rgba(180,160,120,.6);
 }
-.itemLeft,.itemRight{
-  display: inline-block;
-}
+
 .img{
   width: 200px;
   height: 200px;
 }
-.itemLeft{
-  width: 30%;
-}
-.itemRight{
-  // display: flex;
-  // flex-grow: 3;
-  width: 65%;
-  vertical-align: top;
+.itemLeft,.itemRight{
+  display: flex;
 }
 
+.itemRight{
+  padding-right: 10px;
+  flex-direction: column;
+  flex-grow: 24;
+}
+.actionWrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 .title{
-  // box-sizing: border-box;
-  // padding: 0 15px;
-  // display: inline-block;
-  // white-space: nowrap; 
-  // width: 100%;
-  // overflow: hidden;
-  // text-overflow:ellipsis;
-  font-size: 16px;
+  font-size: 24px;
   text-align: justify;
 }
 .price{
-  display: block;
-  font-size: 18px;
+  font-size: 24px;
   color: #e4393c;
+  font-weight: 700;
 }
 
 .btn{
-  width: 160px;
-  height: 36px;
-  line-height: 36px;
+  width: 180px;
+  height: 46px;
+  padding: 0;
+  line-height: 46px;
   background-color: #e4393c;
-  font-size: 20px;
+  font-size: 28px;
   color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.btn::after{
+  border: 0;
 }
