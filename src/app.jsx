@@ -41,8 +41,8 @@ class App extends Component {
     },
     // 底部导航栏
     tabBar: {
-      color: '#999999',
-      selectedColor: '',
+      color: '#586069',
+      selectedColor: '#03a0d6',
       // backgroundColor: '#4caf50',
       // tabBar的位置，仅支持 bottom / top，默认bottom
       // position: '',

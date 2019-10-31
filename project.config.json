@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "dist/",
 	"projectname": "travelling",
-	"description": "轻装上阵，与你同行",
+	"description": "与书为伴，与你同行",
 	"appid": "wxe848c94348819fec",
 	"setting": {
 		"urlCheck": true,
