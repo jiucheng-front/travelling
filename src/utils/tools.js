@@ -1,11 +1,23 @@
+/*
+ *@Author: Jiucheng
+ *@Date: 2019-11-01 18:16:11
+ *@Description: 工具函数
+ */
 import Taro from '@tarojs/taro'
 
+/**
+ * @param {object} token 
+ */
 export function setToken(token) {
-  Taro.setStorage('token', token)
+  Taro.setStorageSync('token', token)
 }
 
 export function getToken() {
-  return Taro.getStorage('token')
+  return Taro.getStorageSync('token')
+}
+
+export const getRadomNum = (max, min) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 export function isLogined() {

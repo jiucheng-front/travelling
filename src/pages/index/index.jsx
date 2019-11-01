@@ -47,6 +47,10 @@ class Index extends Component {
     }
   }
 
+  componentDidMount() {
+    // Taro.setStorageSync('token', '')
+  }
+
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
   }
@@ -58,12 +62,16 @@ class Index extends Component {
   componentDidHide() { }
 
   onButtonClick() {
-    if (isLogined()) {
-      Taro.redirectTo({ url: '/pages/publish/publish' })
+    const loginState = isLogined()
+    if (loginState) {
+      // navigateTo默认左上角有返回箭头
+      Taro.navigateTo({ url: '/pages/publish/publish' })
+      // redirectTo默认左上角是  home icon返回
+      // Taro.redirectTo({ url: '/pages/publish/publish' })
     } else {
       Taro.redirectTo({ url: '/pages/auth/login' })
     }
-    console.log('111')
+    console.log(loginState, 'loginState111')
   }
 
   render() {

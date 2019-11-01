@@ -7,7 +7,7 @@ import { add, minus, asyncAdd } from '../../actions/counter'
 
 import './auth.scss'
 
-import { loginPost } from '../../services/auth'
+// import { loginPost } from '../../services/auth'
 import { setToken } from '../../utils/tools'
 
 @connect(({ counter }) => ({
@@ -61,28 +61,36 @@ class Login extends Component {
   }
 
   submitHandle = () => {
+    // mock login
+    setToken(Math.random().toString(36).slice(2))
+    Taro.redirectTo({ url: '/pages/index/index' })
+    // ----------------真实校验-------------------
     // 本地需要：微信开发者工具不校验域名
-    loginPost({
-      user_name: this.state.userName,
-      password: this.state.passWord,
-    }).then(res => {
-      setToken(res.info)
-      if (res.code == 'y') {
-        Taro.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
-        Taro.redirectTo({ url: '/pages/index/index' })
-      } else {
-        Taro.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
-      }
-      console.log(res)
-    }).catch(error => {
-      console.log(error)
-    })
+    // loginPost({
+    //   user_name: this.state.userName,
+    //   password: this.state.passWord,
+    // }).then(res => {
+    //   setToken(res.info)
+    //   if (res.code == 'y') {
+    //     Taro.showToast({
+    //       title: '登录成功',
+    //       icon: 'none',
+    //     })
+    //     Taro.redirectTo({ url: '/pages/index/index' })
+    //   } else {
+    //     Taro.showToast({
+    //       title: '登录失败',
+    //       icon: 'none',
+    //     })
+    //   }
+    //   console.log(res)
+    // }).catch(error => {
+    //   console.log(error)
+    //   Taro.showToast({
+    //     title: '当前服务器出错，稍后再试',
+    //     icon: 'none',
+    //   })
+    // })
   }
 
   render() {

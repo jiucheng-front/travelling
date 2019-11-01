@@ -6,6 +6,7 @@ import { AtForm, AtInput, AtButton, AtMessage } from 'taro-ui'
 import { add, minus, asyncAdd } from '../../actions/counter'
 
 import './auth.scss'
+import { setToken } from '../../utils/tools'
 
 
 @connect(({ counter }) => ({
@@ -91,6 +92,9 @@ class Register extends Component {
         'message': '注册成功',
         'type': 'success',
       })
+      // mock---login--
+      setToken(Math.random().toString(36).slice(2))
+      Taro.redirectTo({ url: '/pages/index/index' })
       console.log(`注册用户提交`)
     }
   }
