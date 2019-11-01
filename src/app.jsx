@@ -18,9 +18,13 @@ const store = configStore()
 
 class App extends Component {
 
+  // eslint-disable-next-line react/sort-comp
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/auth/login',
+      'pages/auth/register',
+      'pages/publish/publish',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -30,17 +34,17 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />
