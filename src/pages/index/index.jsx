@@ -1,77 +1,50 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image, Input } from '@tarojs/components'
+import { View, Button, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { add, minus, asyncAdd } from '../../actions/counter'
-import './index.styl'
 
-import { technology } from '../../assets/dbdata/children'
+import { add, minus, asyncAdd } from '../../actions/counter'
+
+import './index.scss'
+
 
 @connect(({ counter }) => ({
   counter
 }), (dispatch) => ({
-  add() {
+  add () {
     dispatch(add())
   },
-  dec() {
+  dec () {
     dispatch(minus())
   },
-  asyncAdd() {
+  asyncAdd () {
     dispatch(asyncAdd())
   }
 }))
 class Index extends Component {
 
-  // eslint-disable-next-line react/sort-comp
+    // eslint-disable-next-line react/sort-comp
   config = {
     navigationBarTitleText: '首页'
   }
 
-  componentDidMount() { }
-
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() { }
+  componentWillUnmount () { }
 
-  componentDidShow() { }
+  componentDidShow () { }
 
-  componentDidHide() { }
+  componentDidHide () { }
 
-  onFocusHandle = (e) => {
-    console.log(e)
-  }
-
-  render() {
+  render () {
     return (
       <View className='index'>
-        <View className='searchWrap'>
-          <View className='searchMain'>
-            <Input
-              className='search'
-              placeholder='热门书籍 Javascript'
-              onFocus={this.onFocusHandle}
-            />
-          </View>
-        </View>
-        <View className='container'>
-          {
-            technology.map(book => (
-              <View className='lineItem' key={book.id}>
-                <View className='itemLeft'>
-                  <Image className='img' src={book.img_url} />
-                </View>
-                <View className='itemRight'>
-                  <Text className='title'>{book.title}</Text>
-                  <View className='actionWrap'>
-                    <Text className='price'>价格：{book.price}</Text>
-                    <Button className='btn'>加入购物车</Button>
-                  </View>
-                </View>
-              </View>
-            ))
-          }
-        </View>
+        <Button className='add_btn' onClick={this.props.add}>+</Button>
+        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
+        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
+        <View><Text>{this.props.counter.num}</Text></View>
+        <View><Text>Hello, World</Text></View>
       </View>
     )
   }

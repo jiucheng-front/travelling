@@ -1,14 +1,13 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "travelling",
-	"description": "与书为伴，与你同行",
+	"projectname": "%E8%BD%BB%E6%97%85",
+	"description": "轻装上阵，与你同行",
 	"appid": "wxe848c94348819fec",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
 		"postcss": false,
-		"minified": false,
-		"newFeature": true
+		"minified": false
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
