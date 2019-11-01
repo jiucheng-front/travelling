@@ -7,11 +7,13 @@ import {
   AtTextarea,
   AtImagePicker,
   AtButton,
-  // AtMessage,
+  AtMessage,
 } from 'taro-ui'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 import './publish.scss'
+import { serverUrl } from '../../utils/config'
+import { publishPost } from '../../services/article'
 
 
 @connect(({ counter }) => ({
@@ -71,20 +73,74 @@ class Publish extends Component {
     })
   }
 
-  onFail (mes) {
+  onFail(mes) {
     console.log(mes)
   }
-  onImageClick (index, file) {
+
+  onImageClick(index, file) {
     console.log(index, file)
   }
 
   imageChangeHandle(files) {
+    files.forEach((file, index) => {
+      if (file) {
+        console.log(index)
+        Taro.uploadFile({
+          url: `${serverUrl}/api/v1/common/upload_files`,
+          name: 'file',
+          filePath: file.url,
+          formData: file.file,
+        }).then(res => {
+          const imgsArr = []
+          const resultFile = serverUrl + JSON.parse(res.data.info)
+          imgsArr[index] = resultFile
+          this.setState({
+            files: imgsArr
+          })
+          console.log(res)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+    })
     this.setState({
       files
     })
   }
 
   submitHandle = () => {
+    const { title, description, files } = this.state
+    if (!title) {
+      return Taro.atMessage({
+        message: '标题不能为空',
+        type: 'warning'
+      })
+    }
+    const data = {
+      title,
+      description,
+      files,
+      cover_img: files[0].url,
+    }
+    publishPost(data).then(res => {
+      if (res.codeState === '0') {
+        Taro.showToast({
+          title: '发布成功',
+          icon: 'success',
+          duration: 2000
+        })
+      } else {
+        Taro.showToast({
+          title: '发布失败',
+          icon: 'none',
+        })
+      }
+    }).catch(error => {
+      Taro.showToast({
+        title: '服务器繁忙,发布失败',
+      })
+      console.log(error)
+    })
     console.log('submit')
   }
 
@@ -92,6 +148,7 @@ class Publish extends Component {
     const { title, description, files } = this.state
     return (
       <View className='publish'>
+        <AtMessage />
         <View className='form'>
           <AtForm>
             <AtInput
@@ -115,8 +172,10 @@ class Publish extends Component {
               multiple
               files={files}
               length={5}
-              count={4}
+              count={9}
               onChange={this.imageChangeHandle.bind(this)}
+              onFail={this.onFail.bind(this)}
+              onImageClick={this.onImageClick.bind(this)}
             />
             <AtButton
               type='primary'
