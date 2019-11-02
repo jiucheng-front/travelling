@@ -25,6 +25,7 @@ class App extends Component {
       'pages/auth/login',
       'pages/auth/register',
       'pages/publish/publish',
+      'pages/article/article',
     ],
     window: {
       backgroundTextStyle: 'light',

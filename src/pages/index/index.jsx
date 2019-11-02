@@ -1,16 +1,17 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Swiper, SwiperItem, Image, Text } from '@tarojs/components'
+import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtGrid, AtFab } from 'taro-ui'
 import { add, minus, asyncAdd } from '../../actions/counter'
+import { fetchGithubInfo } from '../../actions/github'
 import './index.scss'
 
 import { isLogined } from '../../utils/tools'
 import { articleList } from '../../dbdata'
 
-console.log(articleList)
-@connect(({ counter }) => ({
-  counter
+@connect(({ counter, githubInfo }) => ({
+  counter,
+  githubInfo
 }), (dispatch) => ({
   add() {
     dispatch(add())
@@ -20,6 +21,9 @@ console.log(articleList)
   },
   asyncAdd() {
     dispatch(asyncAdd())
+  },
+  getGithuninfo() {
+    dispatch(fetchGithubInfo())
   }
 }))
 class Index extends Component {
@@ -51,6 +55,7 @@ class Index extends Component {
 
   componentDidMount() {
     // Taro.setStorageSync('token', '')
+    console.log(this.props, 'index222')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,6 +85,7 @@ class Index extends Component {
     const { banners } = this.state
     return (
       <View className='index'>
+        <Button className='add_btn' onClick={this.props.getGithuninfo}>+</Button>
         {/* <AtFab onClick={this.onButtonClick.bind(this)}>
           <Text className='at-fab__icon at-icon at-icon-menu'>发布</Text>
         </AtFab> */}
@@ -165,7 +171,11 @@ class Index extends Component {
         />
         {
           articleList.map(article => (
-            <View key={article.id} className='articelItem'>
+            <View
+              key={article.id}
+              className='articelItem'
+              onClick={() => Taro.navigateTo({ url: `/pages/article/article?id=${article.id}` })}
+            >
               <Image className='img' src={article.cover_img} />
               <View className='txt'>
                 <Text className='title'>{article.title}</Text>
