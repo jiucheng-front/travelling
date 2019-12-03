@@ -46,10 +46,58 @@ $ npx taro build --type weapp
 
 #### 开发
 
-```bash
-# 启动
+```javascript
+// 启动
 npm run dev:weapp
-# 微信开发者工具查看(实时更新)
+// 微信开发者工具查看(实时更新)
+
+// 路由配置：app.jsx
+config = {
+  pages: [
+    'pages/index/index',
+    'pages/auth/login',
+    'pages/auth/register',
+    'pages/publish/publish',
+    'pages/article/article',
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'WeChat',
+    navigationBarTextStyle: 'black'
+  }
+}
+
+// 路由跳转：
+Taro.navigateTo({ url: '/pages/publish/publish' })
+
+// 接口请求：utils/request.js
+
+export default function request(url, method, data) {
+  Taro.showLoading({
+    title: '加载中',
+  })
+  return Taro.request({
+    url,
+    method,
+    data,
+    header: {
+      'content-type': 'application/json',
+      Authorization: 'bearer' + getToken()
+    }
+  }).then(res => {
+    Taro.hideLoading()
+    if (res.statusCode == 401) {
+      Taro.redirectTo({
+        url: '/pages/auth/login'
+      })
+    }
+    return res.data
+  }).catch(error => {
+    Taro.hideLoading()
+    return error
+  })
+}
 
 
 ```
