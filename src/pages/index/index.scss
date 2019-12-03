@@ -2,6 +2,7 @@
   flex-direction: column;
   width: 100%;
   position: relative;
+  padding-bottom: 30px;
 }
 
 .itemImg {
@@ -12,6 +13,7 @@
 
 .fabu-btn{
   position: fixed;
+  z-index: 99;
   right: 16px;
   bottom: 35px;
 }
@@ -35,10 +37,10 @@
     padding-left: 15px;
   }
   .title{
-    font-size: 30px;
+    font-size: 32px;
   }
   .desc{
-    font-size: 24px;
+    font-size: 30px;
     color: #9d9d99;
     // 只显示2行
     text-overflow: -o-ellipsis-lastline;
@@ -50,7 +52,7 @@
     -webkit-box-orient: vertical;
   }
   .author{
-    font-size: 22px;
+    font-size: 26px;
     color: #6190e8;
   }
 }
