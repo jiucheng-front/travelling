@@ -129,6 +129,7 @@ class Publish extends Component {
           icon: 'success',
           duration: 2000
         })
+        Taro.redirectTo({ url: '/pages/index/index' })
       } else {
         Taro.showToast({
           title: '发布失败',

@@ -71,8 +71,13 @@ config = {
 // 路由跳转：
 Taro.navigateTo({ url: '/pages/publish/publish' })
 
-// 接口请求：utils/request.js
+// 路由传递参数
+Taro.navigateTo({ url: `/pages/article/article?id=${article.id}`
 
+// 路由获取参数
+this.$router.params.id
+
+// 接口请求：utils/request.js
 export default function request(url, method, data) {
   Taro.showLoading({
     title: '加载中',
@@ -99,5 +104,6 @@ export default function request(url, method, data) {
   })
 }
 
+// 富文本解析插件：wxParse
 
 ```

@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
-
+import { getArticleDetail } from '../../services/article'
 import './article.scss'
 
 
@@ -28,6 +28,11 @@ class Article extends Component {
   }
 
   componentDidMount() {
+    getArticleDetail(this.$router.params.id).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
     console.log(this.$router)
   }
 
